@@ -37,18 +37,21 @@ namespace ariel {
         this->cards_won.push_back(card);
     }
 
-    int Player::get_wins(){
-        return this->wins;
-    }
+
 
     double Player::get_winRate(){
-        double rate=(double)this->wins/52;
-        return rate/100;
+        int wins=cardesTaken()/2;//the amount of cards the player take from the other player is the amount of rounds he won
+        double rate=(double)wins/26;
+        return rate*100;
     }
 
 
-    vector<Card> Player::get_cards_won(){
-        return this->cards_won;
+    string Player::get_cards_won(){
+        string result="";
+         for(Card x:this->cards_won){
+            result+=", {"+x.get_data()+","+x.get_type()+"} ,";
+         }
+     return result;
     }
 
     Card Player::playcard(){
