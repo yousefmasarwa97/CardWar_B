@@ -27,7 +27,7 @@ namespace ariel {
         else if (this->value=="FIVE") {
         return 5;
         }
-        else if (this->value=="SEX") {
+        else if (this->value=="SIX") {
         return 6;
         }
         else if (this->value=="SEVEN") {
@@ -45,7 +45,7 @@ namespace ariel {
         else if (this->value=="JACK") {
         return 11;
         }
-        else if (this->value=="QUEEN") {
+        else if (this->value=="QUEN") {
         return 12;
         }
         else if (this->value=="KING") {

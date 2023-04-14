@@ -21,10 +21,12 @@ namespace ariel {
         int rounds;//the amount of rounds played
         int player1_wins;
         int player2_wins;
+        bool isdraw;
         
         vector<Card> deck;
         vector<Card> cards_on_table_that_belongto_player1;//vector that have all the cards that in the table that player1 throw
         vector<Card> cards_on_table_that_belongto_player2;//vector that have all the cards that in the table that player2 throw
+        vector<Card> cards_gained_from_other_player;//just the cards that gaind from the other player
         string lastTurn;//the state of the last turn
         string log;//the state of all turns
         string first_player_log;

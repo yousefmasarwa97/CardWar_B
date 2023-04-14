@@ -49,7 +49,7 @@ namespace ariel {
     string Player::get_cards_won(){
         string result="";
          for(Card x:this->cards_won){
-            result+=", {"+x.get_data()+","+x.get_type()+"} ,";
+            result+=" {"+x.get_data()+","+x.get_type()+"} ,";
          }
      return result;
     }

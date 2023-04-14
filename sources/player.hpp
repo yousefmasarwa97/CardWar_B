@@ -22,7 +22,8 @@ namespace ariel
       private:
       string name;
       vector<Card> Collection_of_cards;//thecards the player have
-      vector<Card> cards_won;
+      vector<Card> cards_won;//all the cards that won
+      //vector<Card> cards_gained_from_other_player;//just the cards won from the other player
       int cards_gained;//the amount of cards the player won
       double win_rate;
       bool turned;//tell us if the card is turned in case of draw or not
