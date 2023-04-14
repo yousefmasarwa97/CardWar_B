@@ -17,20 +17,15 @@ namespace ariel {
         return this->name;
     }
 
-    void Player::setPlayerName(string name){
-        this->name=name; 
-
-    }
-
     int Player::cardesTaken() {
         return this->cards_won.size();
     }
     int Player::stacksize() {
-        return this->Collection_of_cards.size();
+        return this->cards_owned.size();
     }
 
-    void Player::addCardToCollection(Card &card){
-        this->Collection_of_cards.push_back(card);
+    void Player::add_To_Owned_Cards(Card &card){
+        this->cards_owned.push_back(card);
     }
     
     void Player::addWonCard(Card &card){
@@ -39,31 +34,31 @@ namespace ariel {
 
 
 
-    double Player::get_winRate(){
-        int wins=cardesTaken()/2;//the amount of cards the player take from the other player is the amount of rounds he won
-        double rate=(double)wins/26;
-        return rate*100;
+    double Player::get_winRate(Player &player,int rounds){
+        int wins=player.cardesTaken()/2;//the amount of cards the player take from the other player is the amount of rounds he won
+        double rate=(double)wins/rounds;
+        return rate*100.0;
     }
 
 
     string Player::get_cards_won(){
         string result="";
          for(Card x:this->cards_won){
-            result+=" {"+x.get_data()+","+x.get_type()+"} ,";
+            result+=" {"+x.get_data()+"} ,";
          }
      return result;
     }
 
     Card Player::playcard(){
-        Card card=this->Collection_of_cards.back();
-        this->Collection_of_cards.pop_back();
+        Card card=this->cards_owned.back();
+        this->cards_owned.pop_back();
         turned=false;
         return card;
     }
 
     Card Player::playturnedcard(){
-        Card card=this->Collection_of_cards.back();
-        this->Collection_of_cards.pop_back();
+        Card card=this->cards_owned.back();
+        this->cards_owned.pop_back();
         turned=true;
         return card;
     }

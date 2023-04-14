@@ -18,14 +18,14 @@ namespace ariel {
 
         private:
         string type;
-        string value;
+        int value;
 
 
         public:
-        Card(string type,string value);
+        Card(string type,int value);
         int get_value();
         string get_type();
-        string get_data();//return the value of the card in string
+        string get_data();//return the value of the card and the type in string
 
 
 

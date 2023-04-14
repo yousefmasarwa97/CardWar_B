@@ -2,58 +2,19 @@
 #include <string>
 
 
+
+
 using namespace std;
 namespace ariel {
 
 
-    Card::Card(string type, string value){
+    Card::Card(string type, int value){
         this->type=type;
         this->value=value;
     }
 
     int Card::get_value(){
-        if (this->value=="ACE") {
-        return 1;
-        }
-        else if (this->value=="TWO") {
-        return 2;
-        }
-        else if (this->value=="THREE") {
-        return 3;
-        }
-        else if (this->value=="FOUR") {
-        return 4;
-        }
-        else if (this->value=="FIVE") {
-        return 5;
-        }
-        else if (this->value=="SIX") {
-        return 6;
-        }
-        else if (this->value=="SEVEN") {
-        return 7;
-        }
-        else if (this->value=="EIGHT") {
-        return 8;
-        }
-        else if (this->value=="NINE") {
-        return 9;
-        }
-        else if (this->value=="TEN") {
-        return 10;
-        }
-        else if (this->value=="JACK") {
-        return 11;
-        }
-        else if (this->value=="QUEN") {
-        return 12;
-        }
-        else if (this->value=="KING") {
-        return 13;
-        }
-        else {
-        throw "error:invalid value";
-        }
+     return this->value;
     }
 
     string Card::get_type(){
@@ -61,7 +22,46 @@ namespace ariel {
     }
 
     string Card::get_data(){
-        return this->value;
+        if (this->get_value()==1) {
+           return "ACE OF "+ this->get_type();
+        }
+        else if (this->get_value()==2) {
+           return "TWO OF "+ this->get_type();
+        }
+        else if (this->get_value()==3) {
+           return "THREE OF "+ this->get_type();
+        }
+        else if (this->get_value()==4) {
+           return "FOUR OF "+ this->get_type();
+        }
+        else if (this->get_value()==5) {
+           return "FIVE OF "+ this->get_type();
+        }
+        else if (this->get_value()==6) {
+           return "SIX OF "+ this->get_type();
+        }
+        else if (this->get_value()==7) {
+           return "SEVEN OF "+ this->get_type();
+        }
+        else if (this->get_value()==8) {
+           return "EIGHT OF "+ this->get_type();
+        }
+        else if (this->get_value()==9) {
+           return "NINE OF "+ this->get_type();
+        }
+        else if (this->get_value()==10) {
+           return "TEN OF "+ this->get_type();
+        }
+        else if (this->get_value()==11) {
+           return "JACK OF "+ this->get_type();
+        }
+        else if (this->get_value()==12) {
+           return "QUEN OF "+ this->get_type();
+        }
+        else if (this->get_value()==13) {
+           return "KING OF "+ this->get_type();
+        }
+        throw "invalid value!";
     }
 
 
