@@ -165,79 +165,90 @@ namespace ariel {
             // int static result1;
 
             while (flag==false) {
-               Card c1=player1.playturnedcard();
-               cards_on_table_that_belongto_player1.push_back(c1);
+               if(player1.stacksize()>=2 && player2.stacksize()>=2){
+                  Card c1=player1.playturnedcard();
+                  cards_on_table_that_belongto_player1.push_back(c1);
 
-               Card c2=player2.playturnedcard();
-               cards_on_table_that_belongto_player2.push_back(c2);
+                  Card c2=player2.playturnedcard();
+                  cards_on_table_that_belongto_player2.push_back(c2);
 
-               Card c11=player1.playcard();
-               cards_on_table_that_belongto_player1.push_back(c11);
+                  Card c11=player1.playcard();
+                  cards_on_table_that_belongto_player1.push_back(c11);
 
-               Card c22=player2.playcard();
-               cards_on_table_that_belongto_player2.push_back(c22);
-               //result1=chekwinner(c11, c22);
-
-               if (c11.get_value()>c22.get_value()) {
-                  this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
-                  player2.getPlayerName() + " played " + card2.get_data()+". "
-                  +player1.getPlayerName()+" "+ "WON.";
-                  log+=lastTurn;
-                  player1_wins++;
+                  Card c22=player2.playcard();
+                  cards_on_table_that_belongto_player2.push_back(c22);
+                  //result1=chekwinner(c11, c22);
+               
+                  if (c11.get_value()>c22.get_value()) {
+                     this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
+                     player2.getPlayerName() + " played " + card2.get_data()+". "
+                     +player1.getPlayerName()+" "+ "WON.";
+                     log+=lastTurn;
+                     player1_wins++;
 
             
-                  for (Card x:cards_on_table_that_belongto_player2) {
-                     player1.addWonCard(x);
-                  }
+                     for (Card x:cards_on_table_that_belongto_player2) {
+                        player1.addWonCard(x);
+                     }
 
-                  for(Card y:cards_on_table_that_belongto_player1){
-                     player1.addWonCard(y);
-                  }
+                     for(Card y:cards_on_table_that_belongto_player1){
+                        player1.addWonCard(y);
+                     }
             
 
-                  cards_on_table_that_belongto_player1.clear();
-                  cards_on_table_that_belongto_player2.clear();
+                     cards_on_table_that_belongto_player1.clear();
+                     cards_on_table_that_belongto_player2.clear();
               
-                  flag=true;
-                  break;
-               }
+                     flag=true;
+                     break;
+                  }
 
       
-               if (c11.get_value()<c22.get_value()) {
-                  this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() +" "+
-                  player2.getPlayerName() + " played " + card2.get_data()+ ". "+player2.getPlayerName()+" "+ "WON.";
-                  log+=lastTurn;
-                  player2_wins++;
+                  else if (c11.get_value()<c22.get_value()) {
+                     this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() +" "+
+                     player2.getPlayerName() + " played " + card2.get_data()+ ". "+player2.getPlayerName()+" "+ "WON.";
+                     log+=lastTurn;
+                     player2_wins++;
 
 
-                  for (Card x:cards_on_table_that_belongto_player1) {
-                     player2.addWonCard(x);
-                  }
-                  for(Card y:cards_on_table_that_belongto_player2){
-                     player2.addWonCard(y);
-                  }
+                     for (Card x:cards_on_table_that_belongto_player1) {
+                        player2.addWonCard(x);
+                     }
+                     for(Card y:cards_on_table_that_belongto_player2){
+                        player2.addWonCard(y);
+                     }
             
               
-                  cards_on_table_that_belongto_player1.clear();
-                  cards_on_table_that_belongto_player2.clear();
+                     cards_on_table_that_belongto_player1.clear();
+                     cards_on_table_that_belongto_player2.clear();
           
                   
-                  flag=true;
-                  break;
+                     flag=true;
+                     break;
                   
-               }
+                  }
 
-               else {
-                  draws++;
-                  lastTurn = player1.getPlayerName() + " played " + card1.get_data() + 
-                  " "+player2.getPlayerName() + " played " + card2.get_data()+ ". "+ "DRAW.";
-                  log+=lastTurn;
-                  flag=false;
-                  if (rounds>=25) {
-                  break;
+                  else {
+                     draws++;
+                     lastTurn = player1.getPlayerName() + " played " + card1.get_data() + 
+                     " "+player2.getPlayerName() + " played " + card2.get_data()+ ". "+ "DRAW.";
+                     log+=lastTurn;
+                     flag=false;
                   }
                }
 
+            
+               else{
+                     if(player1.stacksize()==0){
+                   
+                        player1.addWonCard(card1);
+                        player2.addWonCard(card2);
+                        flag=true;
+                        break;
+                     }  
+                  }
+                    
+               }
             }
             
          }
@@ -288,7 +299,8 @@ namespace ariel {
             counter++;
          }
       }
-   }
+}
 
    
-}
+
+
