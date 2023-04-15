@@ -109,7 +109,7 @@ namespace ariel {
          cards_on_table_that_belongto_player1.push_back(card1);
          Card card2=player2.playcard();
          cards_on_table_that_belongto_player2.push_back(card2);
-         //int static result=chekwinner(card1, card2);
+        
 
          if (card1.get_value()>card2.get_value()) {
            this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
@@ -162,7 +162,7 @@ namespace ariel {
             log+=lastTurn;
 
             bool flag=false;
-            // int static result1;
+        
 
             while (flag==false) {
                if(player1.stacksize()>=2 && player2.stacksize()>=2){
@@ -177,7 +177,7 @@ namespace ariel {
 
                   Card c22=player2.playcard();
                   cards_on_table_that_belongto_player2.push_back(c22);
-                  //result1=chekwinner(c11, c22);
+              
                
                   if (c11.get_value()>c22.get_value()) {
                      this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
@@ -239,13 +239,28 @@ namespace ariel {
 
             
                else{
-                     if(player1.stacksize()==0){
+                    for (Card x:cards_on_table_that_belongto_player1) {
+                        player1.addWonCard(x);
+                     }
+
+                     for(Card y:cards_on_table_that_belongto_player2){
+                        player2.addWonCard(y);
+                     }
+            
+
+                     cards_on_table_that_belongto_player1.clear();
+                     cards_on_table_that_belongto_player2.clear();
+                     
+                     if (player1.stacksize() == 1) {
+                        // assert(player2.stacksize()==1)
+                        Card c1=player1.playcard();
+                        Card c2=player2.playcard();
                    
-                        player1.addWonCard(card1);
-                        player2.addWonCard(card2);
+                        player1.addWonCard(c1);
+                        player2.addWonCard(c2);
                         flag=true;
                         break;
-                     }  
+                     }
                   }
                     
                }
@@ -255,23 +270,8 @@ namespace ariel {
          
       }
       
-   }
+   
 
-   int Game::chekwinner(Card card1,Card card2){
-      int res;
-      if (card1.get_value()==card2.get_value()) {
-         res=0;
-      }
-
-      else if (card1.get_value()>card2.get_value()) {
-         res=1;
-      }
-
-      else if (card1.get_value()<card2.get_value()){
-         res=2;
-      }
-      return res;
-   }
 
    vector<Card> Game::createDeck(){
       vector<Card> deck;
@@ -299,8 +299,8 @@ namespace ariel {
             counter++;
          }
       }
-}
+   }
 
-   
+}   
 
 
