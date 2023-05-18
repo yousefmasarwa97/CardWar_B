@@ -109,9 +109,52 @@ namespace ariel {
          cards_on_table_that_belongto_player1.push_back(card1);
          Card card2=player2.playcard();
          cards_on_table_that_belongto_player2.push_back(card2);
+
+         if(card1.get_value() == 2 && card2.get_value() == 14){
+            this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
+            player2.getPlayerName() + " played " + card2.get_data()+". "
+            +player1.getPlayerName()+" "+ "WON.";
+            log+=lastTurn;
+            player1_wins++;
+
+            
+            for (Card x:cards_on_table_that_belongto_player2) {
+               player1.addWonCard(x);
+            }
+
+            for(Card y:cards_on_table_that_belongto_player1){
+               player1.addWonCard(y);
+            }
+            
+
+            cards_on_table_that_belongto_player1.clear();
+            cards_on_table_that_belongto_player2.clear();
+         }
+
+
+         else if(card1.get_value() == 14 && card2.get_value() == 2){
+            this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() +" "+
+            player2.getPlayerName() + " played " + card2.get_data()+ ". "+player2.getPlayerName()+" "+ "WON.";
+            log+=lastTurn;
+            player2_wins++;
+
+
+            for (Card x:cards_on_table_that_belongto_player1) {
+               player2.addWonCard(x);
+            }
+            for(Card y:cards_on_table_that_belongto_player2){
+               player2.addWonCard(y);
+            }
+            
+              
+            cards_on_table_that_belongto_player1.clear();
+            cards_on_table_that_belongto_player2.clear();
+          
+         }
+
         
 
-         if (card1.get_value()>card2.get_value()) {
+         else if (card1.get_value()>card2.get_value()) {
            this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
             player2.getPlayerName() + " played " + card2.get_data()+". "
             +player1.getPlayerName()+" "+ "WON.";
@@ -177,6 +220,48 @@ namespace ariel {
 
                   Card c22=player2.playcard();
                   cards_on_table_that_belongto_player2.push_back(c22);
+
+                  if(card1.get_value() == 2 && card2.get_value() == 14){
+                     this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() + " "+
+                     player2.getPlayerName() + " played " + card2.get_data()+". "
+                     +player1.getPlayerName()+" "+ "WON.";
+                     log+=lastTurn;
+                     player1_wins++;
+
+            
+                     for (Card x:cards_on_table_that_belongto_player2) {
+                        player1.addWonCard(x);
+                     }
+
+                     for(Card y:cards_on_table_that_belongto_player1){
+                        player1.addWonCard(y);
+                     }
+            
+
+                     cards_on_table_that_belongto_player1.clear();
+                     cards_on_table_that_belongto_player2.clear();
+                  }
+
+
+                  else if(card1.get_value() == 14 && card2.get_value() == 2){
+                     this->lastTurn = player1.getPlayerName() + " played " + card1.get_data() +" "+
+                     player2.getPlayerName() + " played " + card2.get_data()+ ". "+player2.getPlayerName()+" "+ "WON.";
+                     log+=lastTurn;
+                     player2_wins++;
+
+
+                     for (Card x:cards_on_table_that_belongto_player1) {
+                        player2.addWonCard(x);
+                     }
+                     for(Card y:cards_on_table_that_belongto_player2){
+                        player2.addWonCard(y);
+                     }
+            
+              
+                     cards_on_table_that_belongto_player1.clear();
+                     cards_on_table_that_belongto_player2.clear();
+          
+                  }
               
                
                   if (c11.get_value()>c22.get_value()) {
@@ -239,44 +324,43 @@ namespace ariel {
 
             
                else{
-                    for (Card x:cards_on_table_that_belongto_player1) {
-                        player1.addWonCard(x);
-                     }
 
-                     for(Card y:cards_on_table_that_belongto_player2){
-                        player2.addWonCard(y);
-                     }
-            
-
-                     cards_on_table_that_belongto_player1.clear();
-                     cards_on_table_that_belongto_player2.clear();
-                     
-                     if (player1.stacksize() == 1) {
-                        // assert(player2.stacksize()==1)
-                        Card c1=player1.playcard();
-                        Card c2=player2.playcard();
-                   
-                        player1.addWonCard(c1);
-                        player2.addWonCard(c2);
-                        flag=true;
-                        break;
-                     }
+                  for (Card x:cards_on_table_that_belongto_player1) {
+                     player1.addWonCard(x);
                   }
-                    
-               }
-            }
+
+                  for(Card y:cards_on_table_that_belongto_player2){
+                     player2.addWonCard(y);
+                  }
             
+
+                  cards_on_table_that_belongto_player1.clear();
+                  cards_on_table_that_belongto_player2.clear();
+                     
+                  if (player1.stacksize() == 1) {
+                     // assert(player2.stacksize()==1)
+                     Card c1=player1.playcard();
+                     Card c2=player2.playcard();
+                   
+                     player1.addWonCard(c1);
+                     player2.addWonCard(c2);
+                     flag=true;
+                     break;
+                  }
+               }
+                    
+            }
          }
-         
+            
       }
-      
-   
+         
+   }
 
 
    vector<Card> Game::createDeck(){
       vector<Card> deck;
       for (string type:{"DIAMONDS","HEARTS","SPADES","CLUBS"}){
-         for(int i=1;i<=13;i++){
+         for(int i=2;i<=14;i++){
             deck.push_back(Card(type,i));
          }
       }
@@ -300,7 +384,7 @@ namespace ariel {
          }
       }
    }
-
-}   
+}
+ 
 
 

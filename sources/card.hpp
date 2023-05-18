@@ -17,14 +17,14 @@ namespace ariel {
     class Card{
 
         private:
-        string type;
+        string type;//"DIAMONDS","HEARTS","SPADES","CLUBS"
         int value;
 
 
         public:
         Card(string type,int value);
         int get_value();
-        string get_type();
+        string get_type();//return the type in string
         string get_data();//return the value of the card and the type in string
 
 
